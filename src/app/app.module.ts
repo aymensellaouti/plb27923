@@ -5,9 +5,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second.component';
+import { ColorComponent } from './components/color/color.component';
 
 @NgModule({
-  declarations: [AppComponent, FirstComponent, SecondComponent],
+  declarations: [AppComponent, FirstComponent, SecondComponent, ColorComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
