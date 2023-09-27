@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Cv } from "../model/cv.model";
 
 @Component({
@@ -6,8 +6,9 @@ import { Cv } from "../model/cv.model";
   templateUrl: "./cv.component.html",
   styleUrls: ["./cv.component.css"],
 })
-export class CvComponent {
+export class CvComponent implements OnInit {
   cvs: Cv[] = [];
+  selectedCv: Cv | null = null;
   constructor() {
     this.cvs = [
       new Cv(
@@ -29,5 +30,12 @@ export class CvComponent {
         4
       ),
     ];
+  }
+  ngOnInit(): void {}
+
+  onSelectCv(cv: Cv) {
+    /* console.log(cv);
+     */
+    this.selectedCv = cv;
   }
 }

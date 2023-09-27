@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Cv } from "../model/cv.model";
 
 @Component({
@@ -8,4 +8,9 @@ import { Cv } from "../model/cv.model";
 })
 export class ItemComponent {
   @Input() cv: Cv | null = null;
+  @Output() selectCv = new EventEmitter<Cv>();
+
+  onSelectCv() {
+    if (this.cv) this.selectCv.emit(this.cv);
+  }
 }
