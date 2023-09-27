@@ -1,6 +1,12 @@
 <div [style.backgroundColor]="color">color works!</div>
 
-<input #colorInput type="text" (change)="changeColor(colorInput.value)" />
+<input
+  class="form-control"
+  #colorInput
+  type="text"
+  (change)="changeColor(colorInput.value)"
+/>
+<input [(ngModel)]="color" class="form-control" type="color" />
 
 <button (click)="changeColor(defaultColor)" class="btn btn-danger">
   Reset
