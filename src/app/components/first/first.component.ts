@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-first",
@@ -6,14 +6,14 @@ import { Component } from "@angular/core";
   styleUrls: ["./first.component.css"],
 })
 export class FirstComponent {
-  name = "first";
+  @Input({ required: true }) name = "first";
   buttonText = "show";
   isHidden = true;
   message = "";
   constructor() {
-    setTimeout(() => {
+    /* setTimeout(() => {
       this.name = "newName";
-    }, 1500);
+    }, 1500); */
   }
   showHide() {
     this.isHidden = !this.isHidden;
