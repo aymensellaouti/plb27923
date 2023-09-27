@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RotatingCardComponent {
 
+  name = 'sellaouti'
+  firstname = 'aymen'
+  path = 'rotating_card_profile.png'
+  job = 'Trainer'
 }
