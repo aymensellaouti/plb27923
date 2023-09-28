@@ -24,7 +24,7 @@ export class HighlightDirective implements OnInit {
   }
 
   /* Le comportement que je veux gérer */
-  /* Lorsque l'evenement mouseenter est déclenché on exécute la mé🍵
+  /* Lorsque l'evenement mouseenter est déclenché on exécute la méthode
     décorée qui est ici onMouseEnter
   */
   @HostListener("mouseenter")
