@@ -2,11 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { Cv } from "../model/cv.model";
 import { LoggerSevice } from "../../services/logger.service";
 import { SayHelloService } from "../../services/say-hello.service";
+import { CvService } from "../service/cv.service";
+import { ToastrService } from "ngx-toastr";
+import { TodoService } from "../../todo/service/todo.service";
 
 @Component({
   selector: "app-cv",
   templateUrl: "./cv.component.html",
   styleUrls: ["./cv.component.css"],
+  providers: [],
 })
 export class CvComponent implements OnInit {
   date = new Date();
@@ -15,33 +19,15 @@ export class CvComponent implements OnInit {
 
   constructor(
     private loggerService: LoggerSevice,
-    private sayHelloService: SayHelloService
+    private sayHelloService: SayHelloService,
+    private cvService: CvService,
+    private toastr: ToastrService,
+    private todoService: TodoService
   ) {
     this.loggerService.log("cc CvComponent");
+    this.toastr.info("Bienvenu dans notre CvTech");
     this.sayHelloService.hello();
-    this.cvs = [
-      new Cv(
-        1,
-        "aymen",
-        "sellaouti",
-        "teacher",
-        "rotating_card_profile2.png",
-        "1234",
-        41
-      ),
-      new Cv(
-        2,
-        "skander",
-        "sellaouti",
-        "teacher",
-        "rotating_card_profile3.png",
-        "12345",
-        4
-      ),
-      new Cv(3, "Yvan", "Guillermin", "Dev", "", "12345", 20),
-      new Cv(4, "Amel", "Sndjak", "Dev", "           ", "12345", 18),
-      new Cv(5, "Angie", "Reyes", "Dev", "           ", "12345", 18),
-    ];
+    this.cvs = this.cvService.getCvs();
   }
   ngOnInit(): void {}
 
@@ -49,5 +35,6 @@ export class CvComponent implements OnInit {
     /* console.log(cv);
      */
     this.selectedCv = cv;
+    this.todoService.logTodos();
   }
 }
