@@ -7,10 +7,12 @@ import { ColorComponent } from "./components/color/color.component";
 import { FirstComponent } from "./components/first/first.component";
 import { SecondComponent } from "./components/second.component";
 import { NF404Component } from "./components/nf404/nf404.component";
+import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
 /* cv */
 const routes: Routes = [
   { path: "", component: FirstComponent },
   { path: "cv", component: CvComponent },
+  { path: "cv/:id", component: DetailsCvComponent },
   { path: "todo", component: TodoComponent },
   { path: "word", component: MiniWordComponent },
   { path: "color", component: ColorComponent },
