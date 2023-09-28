@@ -30,6 +30,7 @@ import { TodoComponent } from "./todo/todo/todo.component";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NF404Component } from './components/nf404/nf404.component';
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
+import { TestFormComponent } from './components/test-form/test-form.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
     NavbarComponent,
     NF404Component,
     DetailsCvComponent,
+    TestFormComponent,
   ],
   imports: [
     BrowserModule,
