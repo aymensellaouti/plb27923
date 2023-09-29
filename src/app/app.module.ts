@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -27,12 +28,12 @@ import { RainbowDirective } from "./directives/rainbow.directive";
 import { UsdToBtcPipe } from "./pipes/usd-to-btc.pipe";
 import { DefaultImagePipe } from "./cv/pipes/default-image.pipe";
 import { TodoComponent } from "./todo/todo/todo.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { NF404Component } from './components/nf404/nf404.component';
-import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
-import { TestFormComponent } from './components/test-form/test-form.component';
-import { LoginComponent } from './auth/login/login.component';
-import { TestObservableComponent } from './components/test-observable/test-observable.component';
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { NF404Component } from "./components/nf404/nf404.component";
+import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
+import { TestFormComponent } from "./components/test-form/test-form.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { TestObservableComponent } from "./components/test-observable/test-observable.component";
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { TestObservableComponent } from './components/test-observable/test-obser
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
