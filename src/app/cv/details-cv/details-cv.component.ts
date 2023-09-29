@@ -22,10 +22,12 @@ export class DetailsCvComponent {
     private router: Router
   ) {
     const id = this.acr.snapshot.params["id"];
-    this.cv = this.cvService.findCvById(+id);
-    if (!this.cv) {
-      this.router.navigate([APP_ROUTES.cv]);
-    }
+    this.cvService.findCvById(+id).subscribe({
+      next: (cv) => (this.cv = cv),
+      error: (e) => {
+        this.router.navigate([APP_ROUTES.cv]);
+      },
+    });
   }
   deleteCv() {
     if (this.cv) {

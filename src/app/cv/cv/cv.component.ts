@@ -30,7 +30,13 @@ export class CvComponent implements OnInit {
     this.sayHelloService.getTodos().subscribe({
       next: (todos) => console.log(todos),
     });
-    this.cvs = this.cvService.getCvs();
+    this.cvService.getCvs().subscribe({
+      next: (cvs) => (this.cvs = cvs),
+      error: () => {
+        this.toastr.error(`Les données sont fake merci de contacter l'admin`);
+        this.cvs = this.cvService.getFakeCvs();
+      },
+    });
     this.cvService.selectCv$.subscribe({
       next: () => this.nb++,
     });
