@@ -27,9 +27,9 @@ export class CvComponent implements OnInit {
     this.loggerService.log("cc CvComponent");
     this.toastr.info("Bienvenu dans notre CvTech");
     this.sayHelloService.hello();
-    this.sayHelloService.getTodos().subscribe({
+    /* this.sayHelloService.getTodos().subscribe({
       next: (todos) => console.log(todos),
-    });
+    }); */
     this.cvService.getCvs().subscribe({
       next: (cvs) => (this.cvs = cvs),
       error: () => {
