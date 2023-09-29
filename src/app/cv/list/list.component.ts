@@ -8,9 +8,4 @@ import { Cv } from "../model/cv.model";
 })
 export class ListComponent {
   @Input() cvs: Cv[] = [];
-  @Output() selectCv = new EventEmitter<Cv>();
-
-  forwardCv(cv: Cv) {
-    this.selectCv.emit(cv);
-  }
 }

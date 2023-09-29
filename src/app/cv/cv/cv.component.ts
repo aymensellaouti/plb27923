@@ -5,6 +5,7 @@ import { SayHelloService } from "../../services/say-hello.service";
 import { CvService } from "../service/cv.service";
 import { ToastrService } from "ngx-toastr";
 import { TodoService } from "../../todo/service/todo.service";
+import { distinctUntilChanged } from "rxjs";
 
 @Component({
   selector: "app-cv",
@@ -15,8 +16,7 @@ import { TodoService } from "../../todo/service/todo.service";
 export class CvComponent implements OnInit {
   date = new Date();
   cvs: Cv[] = [];
-  selectedCv: Cv | null = null;
-
+  nb = 0;
   constructor(
     private loggerService: LoggerSevice,
     private sayHelloService: SayHelloService,
@@ -28,13 +28,9 @@ export class CvComponent implements OnInit {
     this.toastr.info("Bienvenu dans notre CvTech");
     this.sayHelloService.hello();
     this.cvs = this.cvService.getCvs();
+    this.cvService.selectCv$.subscribe({
+      next: () => this.nb++,
+    });
   }
   ngOnInit(): void {}
-
-  onSelectCv(cv: Cv) {
-    /* console.log(cv);
-     */
-    this.selectedCv = cv;
-    this.todoService.logTodos();
-  }
 }
