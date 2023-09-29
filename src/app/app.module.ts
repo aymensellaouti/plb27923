@@ -1,7 +1,11 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -38,6 +42,12 @@ import { AddCvComponent } from "./cv/add-cv/add-cv.component";
 import { AuthInterceptor } from "./auth/iterceptors/auth.interceptor";
 import { LoggerSevice } from "./services/logger.service";
 import { Auth2Interceptor } from "./auth/iterceptors/auth2.interceptor";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -76,6 +86,13 @@ import { Auth2Interceptor } from "./auth/iterceptors/auth2.interceptor";
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     /* { provide: LoggerSevice, useClass: LoggerSevice }, */

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">PLB</a>
+    <a class="navbar-brand">{{ "APP_TITLE" | translate }}</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -67,6 +67,14 @@
           (click)="logout()"
           >logout</a
         >
+        <select
+          (change)="translate(langage.value)"
+          #langage
+          class="form-control"
+        >
+          <option value="fr">fr</option>
+          <option value="en">en</option>
+        </select>
       </div>
     </div>
   </div>
