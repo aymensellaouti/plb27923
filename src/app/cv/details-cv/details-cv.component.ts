@@ -3,6 +3,7 @@ import { Cv } from "../model/cv.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../service/cv.service";
 import { APP_ROUTES } from "../../config/routes.config";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-details-cv",
@@ -19,7 +20,8 @@ export class DetailsCvComponent {
   constructor(
     private acr: ActivatedRoute,
     private cvService: CvService,
-    private router: Router
+    private router: Router,
+    private toaster: ToastrService
   ) {
     const id = this.acr.snapshot.params["id"];
     this.cvService.findCvById(+id).subscribe({
@@ -31,8 +33,17 @@ export class DetailsCvComponent {
   }
   deleteCv() {
     if (this.cv) {
-      this.cvService.deleteCv(this.cv);
-      this.router.navigate([APP_ROUTES.cv]);
+      this.cvService.deleteCv(this.cv.id).subscribe({
+        next: (response) => {
+          this.toaster.success(
+            `Le cv de ${this.cv?.firstname} ${this.cv?.name} a été supprimé avec succès`
+          );
+          this.router.navigate([APP_ROUTES.cv]);
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
     }
   }
 }

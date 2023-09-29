@@ -49,8 +49,11 @@ export class CvService {
   findFakeCvById(id: number): Cv | null {
     return this.cvs.find((cv) => cv.id === id) ?? null;
   }
+  deleteCv(id: number): Observable<{count: number}> {
+    return this.http.delete<{count: number}>(API.cv + id);
+  }
 
-  deleteCv(cv: Cv): boolean {
+  deleteFakeCv(cv: Cv): boolean {
     const index = this.cvs.indexOf(cv);
     if (index > -1) {
       this.cvs.splice(index, 1);
