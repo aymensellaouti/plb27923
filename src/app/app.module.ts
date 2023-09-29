@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -34,6 +34,10 @@ import { DetailsCvComponent } from "./cv/details-cv/details-cv.component";
 import { TestFormComponent } from "./components/test-form/test-form.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { TestObservableComponent } from "./components/test-observable/test-observable.component";
+import { AddCvComponent } from "./cv/add-cv/add-cv.component";
+import { AuthInterceptor } from "./auth/iterceptors/auth.interceptor";
+import { LoggerSevice } from "./services/logger.service";
+import { Auth2Interceptor } from "./auth/iterceptors/auth2.interceptor";
 
 @NgModule({
   declarations: [
@@ -63,6 +67,7 @@ import { TestObservableComponent } from "./components/test-observable/test-obser
     TestFormComponent,
     LoginComponent,
     TestObservableComponent,
+    AddCvComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,19 @@ import { TestObservableComponent } from "./components/test-observable/test-obser
     ToastrModule.forRoot(), // ToastrModule added
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    /* { provide: LoggerSevice, useClass: LoggerSevice }, */
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    /* {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Auth2Interceptor,
+      multi: true,
+    }, */
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

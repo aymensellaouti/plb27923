@@ -54,11 +54,8 @@ export class CvService {
       "access_token",
       localStorage.getItem("token") ?? ""
     ); */
-    const headers = new HttpHeaders().set(
-      "Authorization",
-      localStorage.getItem("token") ?? ""
-    );
-    return this.http.delete<{ count: number }>(API.cv + id, { headers });
+
+    return this.http.delete<{ count: number }>(API.cv + id);
   }
 
   deleteFakeCv(cv: Cv): boolean {

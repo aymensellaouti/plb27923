@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CvService } from "../service/cv.service";
 import { APP_ROUTES } from "../../config/routes.config";
 import { ToastrService } from "ngx-toastr";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: "app-details-cv",
@@ -21,7 +22,8 @@ export class DetailsCvComponent {
     private acr: ActivatedRoute,
     private cvService: CvService,
     private router: Router,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    public authService: AuthService
   ) {
     const id = this.acr.snapshot.params["id"];
     this.cvService.findCvById(+id).subscribe({
